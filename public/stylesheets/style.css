@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.msg-from-watson {
+	color: blue;
+}
+
+.msg-from-user {
+	color: red;
+}

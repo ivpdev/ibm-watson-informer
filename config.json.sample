@@ -1,0 +1,12 @@
+{
+	"watsonConversation": {
+		"credentials": {
+			"url": "https://gateway.watsonplatform.net/conversation/api",
+	        "username": "write here username for your Watson Conversation service",
+	        "password": "write here password for your Watson Conversation service"
+		},
+
+		"workspaceId": "write here workspace Id of your Watson Conversation service"
+	}
+
+}
