@@ -15,6 +15,20 @@ let fromConfigJson = {
 
 	getWatsonConversationWorkspaceId() {
 		return configJson && configJson.watsonConversation.workspaceId
+	},
+
+	discovery: {
+	    credentials() {
+            return configJson && configJson.watsonDiscovery.credentials
+        },
+
+	    collectionId: function() {
+            return configJson && configJson.watsonDiscovery.collectionId
+	    },
+
+	    environmentId: function() {
+            return configJson && configJson.watsonDiscovery.environmentId
+	    }
 	}
 
 }
@@ -28,7 +42,22 @@ let config = {
 
 	getWatsonConversationWorkspaceId: function() {
 		return fromConfigJson.getWatsonConversationWorkspaceId()
+	},
+
+	discovery: {
+	    credentials: function() {
+            return fromConfigJson.discovery.credentials()
+        },
+
+        collectionId: function() {
+            return fromConfigJson.discovery.collectionId()
+        },
+
+        environmentId: function() {
+            return fromConfigJson.discovery.environmentId()
+        }
 	}
+
 };
 
 

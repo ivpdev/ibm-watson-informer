@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
 
 	DialogService
 		.tell(message)
-		.then(answer => res.send(answer))
-});
+		.then(answer =>
+		    res.send(answer) )});
 
 module.exports = router;

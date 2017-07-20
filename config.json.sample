@@ -7,6 +7,17 @@
 		},
 
 		"workspaceId": "write here workspace Id of your Watson Conversation service"
-	}
+	},
+
+	"watsonDiscovery": {
+	    "credentials": {
+            "url": "https://gateway.watsonplatform.net/discovery/api",
+            "username": "write here username for your Watson Discovery service",
+            "password": "write here password for your Watson Discovery service"
+	    },
+
+		"collectionId": "your collection id",
+		"environmentId": "your environment id"
+    }
 
 }

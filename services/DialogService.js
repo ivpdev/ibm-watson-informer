@@ -1,6 +1,5 @@
-
-var WatsonConversationService = require('../services/WatsonConversationService')
-
+let WatsonConversationService = require('../services/WatsonConversationService')
+let WatsonDiscoveryService = require('../services/WatsonDiscoveryService')
 
 let DialogService = {
 	tell: function(msg) {
@@ -8,18 +7,15 @@ let DialogService = {
 
 		return WatsonConversationService
     		.sendMessage(msg)
-    		.then(watsonResponse => self._resolveWatsonResponse(watsonResponse))
-	},
+    		.then(watsonResponse => self._resolveWatsonResponse(watsonResponse))},
 
 	_resolveWatsonResponse: function(watsonResponse) {
-		let askDiscovery = watsonResponse.intents.find(i => i.intent == 'greeting' && i.confidence > 0.5 )
+		let askWhichSoftIsUsedWithWatson = watsonResponse.intents.find(i => i.intent == 'whichSoftwareUsedWithWatson' && i.confidence > 0.5 )
 
-		if (askDiscovery) {
-			return 'opa'
+		if (askWhichSoftIsUsedWithWatson) {
+		    return WatsonDiscoveryService.getSoftwareUsedWithWatson()
 		} else {
-			return watsonResponse.output.text[0]
-		}
-	}
-}
+		    return new Promise((resolve, reject) => {
+		        resolve(watsonResponse.output.text[0]) })}}}
 
 module.exports = DialogService;

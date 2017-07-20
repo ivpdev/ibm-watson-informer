@@ -7,8 +7,7 @@ var conversation = new ConversationV1({
   username: credentials.username,
   password: credentials.password,
   version_date: ConversationV1.VERSION_DATE_2017_04_21
-});
-
+})
 
 let WatsonConversationService = {
 	sendMessage: function(msg) {
@@ -18,12 +17,8 @@ let WatsonConversationService = {
                 workspace_id: config.getWatsonConversationWorkspaceId()
             }, function(err, response) {
                 if (err) {
-                    console.error(err);
+                    console.error(err)
                 } else {
-                    resolve(response);
-                }
-         });});
-	}
-}
+                    resolve(response) }})})}}
 
 module.exports = WatsonConversationService;
