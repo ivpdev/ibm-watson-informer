@@ -1,12 +1,14 @@
 let history = [];
 
-let $watsonSays = $('#watsonSays')
 let $messageHistory = $('#history')
 let $input = $('#youSay');
 
+var context = null;
+
 function sendMessage(msg) {
 	return $.post('chat', {
-		message: msg
+		message: msg,
+		context: JSON.stringify(context)
 	});
 }
 
@@ -30,6 +32,10 @@ function updateHistoryHtml() {
 	$messageHistory.html(historyHtml)
 }
 
+function addToHistory(entry) {
+    history.push(entry)
+    updateHistoryHtml()
+}
 
 
 $('#youSay').on('keydown', function(e) {
@@ -37,25 +43,20 @@ $('#youSay').on('keydown', function(e) {
 		
 		let msg = $input.val();
 
-		history.push({
-			author: 'user',
-			text: msg
-		})
-
-		updateHistoryHtml()
+        addToHistory({
+            author: 'user',
+            text: msg
+        })
 
 		$input.val('');
 
-		sendMessage(msg).then(function(watsonResponse) {
-			history.push({
-				author: 'Watson',
-				text: watsonResponse
-			})
+		sendMessage(msg).then(function(response) {
+		    addToHistory({
+                author: 'Watson',
+                text: response.text
+            })
 
-			updateHistoryHtml()
-
-
-			//$watsonSays.html(watsonResponse);
+            context = response.context
 		});
 	}
 });

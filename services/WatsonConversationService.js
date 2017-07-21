@@ -10,12 +10,18 @@ var conversation = new ConversationV1({
 })
 
 let WatsonConversationService = {
-	sendMessage: function(msg) {
+	sendMessage: function(msg, context) {
 		return new Promise((resolve, reject) => {
-            conversation.message({
-                input: { text: msg },
+		    let watsonMessage = {
+		        input: { text: msg },
                 workspace_id: config.getWatsonConversationWorkspaceId()
-            }, function(err, response) {
+		    }
+
+		    if (context) {
+		        watsonMessage.context = context
+		    }
+
+            conversation.message(watsonMessage, function(err, response) {
                 if (err) {
                     console.error(err)
                 } else {
