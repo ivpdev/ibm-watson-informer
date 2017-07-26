@@ -18,6 +18,17 @@
 
 		"collectionId": "your collection id",
 		"environmentId": "your environment id"
+    },
+
+	"watsonRetrieveAndRank": {
+	    "credentials": {
+            "url": "https://gateway.watsonplatform.net/discovery/api",
+            "username": "write here username for your Watson Retrieve and Rank service",
+            "password": "write here password for your Watson Retrieve and Rank service"
+	    },
+        "solrClusterId": "solr cluster id",
+		"collectionName": "your collection name",
+		"rankerId": "your ranker id"
     }
 
 }

@@ -1,5 +1,6 @@
 let WatsonConversationService = require('../services/WatsonConversationService')
 let WatsonDiscoveryService = require('../services/WatsonDiscoveryService')
+let WatsonRetrieveAndRankService = require('../services/WatsonRetrieveAndRankService')
 
 let DialogService = {
 	tell: function(msg, context) {
@@ -20,9 +21,10 @@ let DialogService = {
 		                .then(function(response) {
 		                   return  { text: response, context: watsonResponse.context }})
 		} else if (askRnR) {
-		    return {
-                text: 'in rnr!',
-                context: watsonResponse.context }
+		    return WatsonRetrieveAndRankService
+		                .query(watsonResponse.input.text)
+		                .then(response => {
+		                    return { text: JSON.stringify(response, null, 4), context: watsonResponse.context }})
 		} else {
 		    return {
                 text: watsonResponse.output.text[0],

@@ -29,6 +29,24 @@ let fromConfigJson = {
 	    environmentId: function() {
             return configJson && configJson.watsonDiscovery.environmentId
 	    }
+	},
+
+	rnr: {
+	    credentials() {
+            return configJson && configJson.watsonRetreiveAndRank.credentials
+        },
+
+        collectionName: function() {
+            return configJson && configJson.watsonRetreiveAndRank.collectionName
+        },
+
+        solrClusterId: function() {
+            return configJson && configJson.watsonRetreiveAndRank.solrClusterId
+        },
+
+        rankerId: function() {
+            return configJson && configJson.watsonRetreiveAndRank.rankerId
+        }
 	}
 
 }
@@ -55,6 +73,24 @@ let config = {
 
         environmentId: function() {
             return fromConfigJson.discovery.environmentId()
+        }
+	},
+
+	rnr: {
+	    credentials: function() {
+            return fromConfigJson.rnr.credentials()
+        },
+
+        collectionName: function() {
+            return fromConfigJson.rnr.collectionName()
+        },
+
+        solrClusterId: function() {
+            return fromConfigJson.rnr.solrClusterId()
+        },
+
+        rankerId: function() {
+            return fromConfigJson.rnr.rankerId()
         }
 	}
 
