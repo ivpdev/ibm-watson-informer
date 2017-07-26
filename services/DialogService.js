@@ -11,7 +11,9 @@ let DialogService = {
     		.then(watsonResponse => self._resolveWatsonResponse(watsonResponse))},
 
 	_resolveWatsonResponse: function(watsonResponse) {
-		let askWhichSoftIsUsedWithWatson = !!watsonResponse.intents.find(i => i.intent == 'whichSoftwareUsedWithWatson' && i.confidence > 0.5 )
+		let askWhichSoftIsUsedWithWatson =
+		    !!watsonResponse.intents
+		        .find(i => i.intent == 'whichSoftwareUsedWithWatson' && i.confidence > 0.5 ) //TODO based on visited nodes istead of intent
 
 		let askRnR = watsonResponse.output.nodes_visited.includes('askRnR')
 
