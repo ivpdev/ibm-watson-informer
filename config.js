@@ -1,4 +1,4 @@
-let fs = require('fs')
+const fs = require('fs')
 
 var configJson = null
 
@@ -8,7 +8,13 @@ try {
 	console.info('Could not load config.json file. Trying to get config from other place')
 }
 
-let fromConfigJson = {
+const emptyCredentials = {
+    username: '',
+    password: ''
+}
+
+
+const fromConfigJson = {
 	getWatsonConversationCredentials() {
 		return configJson && configJson.watsonConversation.credentials
 	},
@@ -55,7 +61,7 @@ let config = {
 	getWatsonConversationCredentials: function() {
 		//process.env.MONGO_URL
 
-		return fromConfigJson.getWatsonConversationCredentials()
+		return fromConfigJson.getWatsonConversationCredentials() || emptyCredentials
 	},
 
 	getWatsonConversationWorkspaceId: function() {
@@ -64,7 +70,7 @@ let config = {
 
 	discovery: {
 	    credentials: function() {
-            return fromConfigJson.discovery.credentials()
+            return fromConfigJson.discovery.credentials() || emptyCredentials
         },
 
         collectionId: function() {
@@ -78,7 +84,7 @@ let config = {
 
 	rnr: {
 	    credentials: function() {
-            return fromConfigJson.rnr.credentials()
+            return fromConfigJson.rnr.credentials() || emptyCredentials
         },
 
         collectionName: function() {
