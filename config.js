@@ -8,23 +8,24 @@ try {
 	console.info('Could not load config.json file. Trying to get config from other place')
 }
 
-const emptyCredentials = {
-    username: '',
-    password: ''
+const defaultCredentials = {
+    username: 'a',
+    password: 'b'
 }
 
-
 const fromConfigJson = {
-	getWatsonConversationCredentials() {
-		return configJson && configJson.watsonConversation.credentials
-	},
+	conversation: {
+	    credentials: function() {
+	        return configJson && configJson.watsonConversation.credentials
+	    },
 
-	getWatsonConversationWorkspaceId() {
-		return configJson && configJson.watsonConversation.workspaceId
+	    workspaceId: function() {
+	        return configJson && configJson.watsonConversation.workspaceId
+	    }
 	},
 
 	discovery: {
-	    credentials() {
+	    credentials: function() {
             return configJson && configJson.watsonDiscovery.credentials
         },
 
@@ -54,23 +55,47 @@ const fromConfigJson = {
             return configJson && configJson.watsonRetreiveAndRank.rankerId
         }
 	}
+}
+
+let fromBluemixEnv = {
+    conversation: {
+        credentials: function() {
+            console.log('! process.env.VCAP_SERVICES')
+            console.log(process.env.VCAP_SERVICES)
+
+            return defaultCredentials
+        },
+
+        workspaceId: function() {
+            return null
+        }
+
+    },
+
+    discovery: {
+
+    },
+
+    rnr: {
+
+    }
 
 }
 
 let config = {
-	getWatsonConversationCredentials: function() {
-		//process.env.MONGO_URL
+    conversation: {
+        credentials: function() {
+    		return fromConfigJson.conversation.credentials() || fromBluemixEnv.conversation.credentials()
+    	},
 
-		return fromConfigJson.getWatsonConversationCredentials() || emptyCredentials
-	},
-
-	getWatsonConversationWorkspaceId: function() {
-		return fromConfigJson.getWatsonConversationWorkspaceId()
-	},
+    	workspaceId: function() {
+    		return fromConfigJson.conversation.workspaceId() || fromConfigJson.conversation.workspaceId()
+    	},
+    },
 
 	discovery: {
 	    credentials: function() {
-            return fromConfigJson.discovery.credentials() || emptyCredentials
+            return fromConfigJson.discovery.credentials() || defaultCredentials
         },
 
         collectionId: function() {
@@ -84,7 +109,7 @@ let config = {
 
 	rnr: {
 	    credentials: function() {
-            return fromConfigJson.rnr.credentials() || emptyCredentials
+            return fromConfigJson.rnr.credentials() || defaultCredentials
         },
 
         collectionName: function() {
@@ -99,7 +124,6 @@ let config = {
             return fromConfigJson.rnr.rankerId()
         }
 	}
-
 };
 
 

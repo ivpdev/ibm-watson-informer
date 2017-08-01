@@ -1,7 +1,7 @@
 var ConversationV1 = require('watson-developer-cloud/conversation/v1')
 var config = require('../config.js')
 
-let credentials = config.getWatsonConversationCredentials()
+let credentials = config.conversation.credentials()
 
 var conversation = new ConversationV1({
   username: credentials.username,
@@ -14,7 +14,7 @@ let WatsonConversationService = {
 		return new Promise((resolve, reject) => {
 		    let watsonMessage = {
 		        input: { text: msg },
-                workspace_id: config.getWatsonConversationWorkspaceId()
+                workspace_id: config.conversation.workspaceId()
 		    }
 
 		    if (context) {
