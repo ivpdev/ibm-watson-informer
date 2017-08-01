@@ -24,6 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+console.log('!!! process.env.VCAP_SERVICES')
+console.log(process.env.VCAP_SERVICES)
+
+
+
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/chat', ChatRest);
