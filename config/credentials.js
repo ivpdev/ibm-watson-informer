@@ -41,17 +41,19 @@ const fromFile = {
 	}
 }
 
+const VCAP_SERVICES = process.env.VCAP_SERVICES && JSON.parse(process.env.VCAP_SERVICES)
+
 const fromBluemixEnv = {
     conversation: function() {
-        return getSafely(process.env, 'VCAP_SERVICES.conversation[0].credentials')
+        return getSafely(VCAP_SERVICES, 'conversation[0].credentials')
     },
 
     discovery: function() {
-        return getSafely(process.env, 'VCAP_SERVICES.discovery[0].credentials')
+        return getSafely(VCAP_SERVICES, 'discovery[0].credentials')
     },
 
     rnr: function() {
-        return getSafely(process.env, 'VCAP_SERVICES.rnr[0].credentials')
+        return getSafely(VCAP_SERVICES, 'retrieve_and_rank[0].credentials')
     }
 }
 
