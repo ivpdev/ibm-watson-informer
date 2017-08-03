@@ -1,12 +1,15 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 router.get('/', function(req, res, next) {
-    res.send('OK!') })
-
+    res.send('OK!')
+})
 
 router.get('/debug', function(req, res, next) {
-    res.send(JSON.stringify(process.env.VCAP_SERVICES, null, 4))
+    //var debugOutput = JSON.stringify(process.env.VCAP_SERVICES, null, 4)
+    var debugOutput = 'DEBUG'
+
+    res.send(debugOutput)
 })
 
 module.exports = router;

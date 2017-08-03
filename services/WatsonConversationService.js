@@ -3,9 +3,6 @@ const config = require('../config/config.js')
 
 const credentials = config.conversation.credentials()
 
-console.error('!!!username: ' + credentials.username)
-console.error('!!!password: ' + credentials.password)
-
 const conversation = new ConversationV1({
   username: credentials.username,
   password: credentials.password,

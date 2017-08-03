@@ -17,23 +17,13 @@ try {
 	console.log(e)
 }
 
-
-console.log('@1:')
-console.log(process.env.VCAP_SERVICES)
-
 const fromFile = {
 	conversation:  function() {
-	    const c = getSafely(credentialsJson, 'watsonConversation.credentials')
-
-	    console.log('@2: ' + c)
-        return c
+	    return getSafely(credentialsJson, 'watsonConversation.credentials')
 	},
 
 	discovery: function() {
-	    const c = getSafely(credentialsJson, 'watsonDiscovery.credentials')
-
-	    console.log('@3: ' + c)
-        return c
+	    return getSafely(credentialsJson, 'watsonDiscovery.credentials')
 	},
 
 	rnr: function() {

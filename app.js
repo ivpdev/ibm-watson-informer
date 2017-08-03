@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var ChatRest = require('./rest/ChatRest');
 var status = require('./rest/status');
@@ -27,7 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index);
-app.use('/users', users);//TODO remove
 app.use('/chat', ChatRest);
 app.use('/status', status);
 
