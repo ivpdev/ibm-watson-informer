@@ -15,7 +15,6 @@ try {
 } catch(e) {
 	console.info('Could not load credentials.json file. Trying to get config from other place')
 	console.log(e)
-
 }
 
 const fromFile = {
@@ -32,24 +31,17 @@ const fromFile = {
 	}
 }
 
-console.log('!!! process.env.VCAP_SERVICES')
-console.log(process.env.VCAP_SERVICES)
-
-const conversationConfig = getSafely(process.env, 'VCAP_SERVICES.conversation[0]')
-const discoveryConfig = getSafely(process.env, 'VCAP_SERVICES.discovery[0]')
-const rnrConfig = getSafely(process.env, 'VCAP_SERVICES.rnr[0]')
-
 const fromBluemixEnv = {
     conversation: function() {
-        return conversationConfig && conversationConfig.credentials
+        return getSafely(process.env, 'VCAP_SERVICES.conversation[0].credentials')
     },
 
     discovery: function() {
-        return discoveryConfig.credentials
+        return getSafely(process.env, 'VCAP_SERVICES.discovery[0].credentials')
     },
 
     rnr: function() {
-        return rnrConfig.credentials
+        return getSafely(process.env, 'VCAP_SERVICES.rnr[0].credentials')
     }
 }
 
