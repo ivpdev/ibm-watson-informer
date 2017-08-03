@@ -2,11 +2,6 @@ const fromFile = require('./fromFile.js')
 const getSafely = require('safe-access')
 const credentials = require('./credentials.js')
 
-const defaultCredentials = {
-    username: 'a',
-    password: 'b'
-}
-
 const config = {
     conversation: {
         credentials: function() {

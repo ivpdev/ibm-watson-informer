@@ -5,6 +5,11 @@ var credentialsJson = null
 
 const CREDENTIALS_JSON_FILE = './config/credentials.json'
 
+const defaultCredentials = {
+    username: 'a',
+    password: 'b'
+}
+
 try {
 	credentialsJson = JSON.parse(fs.readFileSync(CREDENTIALS_JSON_FILE).toString())
 } catch(e) {
@@ -26,7 +31,6 @@ const fromFile = {
         return getSafely(credentialsJson, 'watsonRetreiveAndRank.credentials')
 	}
 }
-
 
 console.log('!!! process.env.VCAP_SERVICES')
 console.log(process.env.VCAP_SERVICES)
@@ -51,15 +55,15 @@ const fromBluemixEnv = {
 
 const credentials = {
     conversation: function() {
-        return fromFile.conversation() || fromBluemixEnv.conversation()
+        return fromFile.conversation() || fromBluemixEnv.conversation() || defaultCredentials
     },
 
     discovery: function() {
-         return fromFile.discovery() || fromBluemixEnv.discovery()
+         return fromFile.discovery() || fromBluemixEnv.discovery() || defaultCredentials
     },
 
     rnr: function() {
-         return fromFile.rnr() || fromBluemixEnv.rnr()
+         return fromFile.rnr() || fromBluemixEnv.rnr() || defaultCredentials
     }
 }
 
