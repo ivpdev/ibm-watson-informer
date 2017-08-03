@@ -1,0 +1,12 @@
+---
+applications:
+- name: conversation-simple
+  command: npm start
+  path: .
+  memory: 256M
+  instances: 1
+  services:
+    - stackoverflow-watson_discovery
+    - watson-so-retreive-and-rank
+  env:
+    NPM_CONFIG_PRODUCTION: false
