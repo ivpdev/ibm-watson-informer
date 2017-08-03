@@ -1,15 +1,15 @@
-var ConversationV1 = require('watson-developer-cloud/conversation/v1')
-var config = require('../config.js')
+const ConversationV1 = require('watson-developer-cloud/conversation/v1')
+const config = require('../config/config.js')
 
-let credentials = config.conversation.credentials()
+const credentials = config.conversation.credentials()
 
-var conversation = new ConversationV1({
+const conversation = new ConversationV1({
   username: credentials.username,
   password: credentials.password,
   version_date: ConversationV1.VERSION_DATE_2017_04_21
 })
 
-let WatsonConversationService = {
+const WatsonConversationService = {
 	sendMessage: function(msg, context) {
 		return new Promise((resolve, reject) => {
 		    let watsonMessage = {

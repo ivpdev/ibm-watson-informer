@@ -1,0 +1,16 @@
+{
+	"watsonConversation": {
+		"workspaceId": "06b44a32-3036-4cdb-bd45-fc00ed13a562"
+	},
+
+	"watsonDiscovery": {
+		"collectionId": "ebc8c268-28bb-4960-806c-dfaa93037005",
+		"environmentId": "cc62bccd-4dd9-4e75-84dd-0a89f12c4f3f"
+	},
+
+	"watsonRetreiveAndRank": {
+		"solrClusterId": "sca397a029_097b_4f36_a64b_312b4a79db15",
+		"collectionName": "watson_informer_collection",
+		"rankerId": "27be5bx32-rank-11824"
+	}
+}

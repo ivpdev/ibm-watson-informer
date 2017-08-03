@@ -1,5 +1,5 @@
 const RetrieveAndRankV1 = require('watson-developer-cloud/retrieve-and-rank/v1');
-const config = require('../config.js')
+const config = require('../config/config.js')
 const request = require('request');
 
 const solrClusterId = config.rnr.solrClusterId()

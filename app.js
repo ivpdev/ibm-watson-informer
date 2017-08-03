@@ -25,13 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-console.log('!!! process.env.VCAP_SERVICES')
-console.log(process.env.VCAP_SERVICES)
-
-
-
 app.use('/', index);
-app.use('/users', users);
+app.use('/users', users);//TODO remove
 app.use('/chat', ChatRest);
 
 // catch 404 and forward to error handler

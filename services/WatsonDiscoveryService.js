@@ -1,5 +1,5 @@
 let DiscoveryV1 = require('watson-developer-cloud/discovery/v1')
-let config = require('../config.js')
+let config = require('../config/config.js')
 
 let credentials = config.discovery.credentials()
 let collectionId = config.discovery.collectionId()
